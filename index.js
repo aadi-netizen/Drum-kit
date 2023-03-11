@@ -5,8 +5,13 @@ n = document.querySelectorAll("button");
 for (i = 0; i < l; i++) {
     n[i].addEventListener("click", function () {
         var letterClicked = this.innerHTML;
+        buttonAnimation(letterClicked);
+        setTimeout(function(){
+            document.querySelector(".pressed").classList.remove("pressed");
+        }, 100);
 
         switch (letterClicked) {
+            
             case "w":
                 var tom1 = new Audio('sounds/tom-1.mp3');
                 tom1.play();
@@ -49,8 +54,13 @@ for (i = 0; i < l; i++) {
     });
 }
 
+
 document.addEventListener("keydown",function (Event) {
 
+    buttonAnimation(Event.key);
+    setTimeout(function(){
+        document.querySelector(".pressed").classList.remove("pressed");
+    }, 100);
     switch (Event.key) {
         case "w":
             var tom1 = new Audio('sounds/tom-1.mp3');
@@ -94,3 +104,8 @@ document.addEventListener("keydown",function (Event) {
     }
     
 });
+
+function buttonAnimation(currentKey){
+    document.querySelector("."+currentKey).classList.add("pressed");
+    
+};
